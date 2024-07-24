@@ -1,2 +1,4 @@
 # Python Job Search
- In progress
+ Searches through timesjobs with keyword
+ Store Job details in files
+ pip -r requirements.txt
