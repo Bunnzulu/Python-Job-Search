@@ -22,7 +22,7 @@ async def SearchTimesJobs(keyword):
     initial_url = f"https://www.timesjobs.com/candidate/job-search.html?from=submit&luceneResultSize=25&txtKeywords={keyword}&postWeek=60&searchType=personalizedSearch&actualTxtKeywords={keyword}&searchBy=0&rdoOperator=OR&pDate=I&sequence={Page}&startPage={StartPage}"
     async with aiohttp.ClientSession() as session:
         initial_result = await fetch(session, initial_url)
-        initial_doc = BeautifulSoup(initial_result, "html.parser")
+        initial_doc = BeautifulSoup(initial_result, "lxml")
         Number_of_Jobs = int(initial_doc.find(id="totolResultCountsId").text)
         Pages = ceil(Number_of_Jobs / 25)
         
@@ -33,7 +33,7 @@ async def SearchTimesJobs(keyword):
         results = await fetch_all(session, urls)
         
         for page_index, result in enumerate(results):
-            doc = BeautifulSoup(result, "lxml")
+            doc = BeautifulSoup(result, "lxml")#html.parser
             Boxes = doc.find_all(class_="clearfix job-bx wht-shd-bx")
             for index, Box in enumerate(Boxes):
                 JobInfo = {}
