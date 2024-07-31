@@ -1,6 +1,5 @@
 from flask import Flask,render_template,request,jsonify
-from TimeJob import SearchTimesJobs
-import asyncio
+from TimeJob import search_times_jobs
 
 
 app = Flask(__name__,template_folder="templates")
@@ -15,7 +14,7 @@ def index():
 @app.route("/Results",methods=["post"])
 def Searched():
     term = request.form.get("Term")
-    return jsonify(asyncio.run(SearchTimesJobs(term)))
+    return jsonify(search_times_jobs(term))
 
 
 
