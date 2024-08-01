@@ -14,7 +14,9 @@ def index():
 @app.route("/Results",methods=["post"])
 def Searched():
     term = request.form.get("Term")
-    return jsonify(search_times_jobs(term))
+    Results = search_times_jobs(term)
+    print(Results)
+    return render_template("resultspage.html",term=term,results=Results)
 
 
 

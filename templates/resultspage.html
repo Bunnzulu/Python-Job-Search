@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+</head>
+{% include 'Style.html' %}
+<body>
+    <div class="position-absolute top-0 start-50 translate-middle-x">
+        <h1>'{{term}}' Jobs</h1>
+        <dl>
+            {% for output in results %}
+            <dt><b>{{output["Title"]}}</b></dt>
+            <dd>Company: {{output["Company"]}}</dd>
+            <dd>Keyskills: {{output["Keyskills"]}}</dd>
+            <dd>Location: {{output["Location"]}}</dd>
+            <dd>More Info: {{output["Job Link"]}}</dd>
+            <hr>
+            <br>
+            {% endfor %}
+        </dl>
+    </div>
+</body>
+</html>
