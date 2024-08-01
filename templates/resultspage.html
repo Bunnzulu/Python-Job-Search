@@ -9,15 +9,15 @@
 <body>
     <div class="position-absolute top-0 start-50 translate-middle-x">
         <h1>'{{term}}' Jobs</h1>
+        <hr>
         <dl>
             {% for output in results %}
             <dt><b>{{output["Title"]}}</b></dt>
             <dd>Company: {{output["Company"]}}</dd>
             <dd>Keyskills: {{output["Keyskills"]}}</dd>
             <dd>Location: {{output["Location"]}}</dd>
-            <dd>More Info: {{output["Job Link"]}}</dd>
+            <a href='{{output["Job Link"]}}'>More Info</a>
             <hr>
-            <br>
             {% endfor %}
         </dl>
     </div>

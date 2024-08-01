@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,jsonify
+from flask import Flask,render_template,request
 from TimeJob import search_times_jobs
 
 
@@ -15,7 +15,6 @@ def index():
 def Searched():
     term = request.form.get("Term")
     Results = search_times_jobs(term)
-    print(Results)
     return render_template("resultspage.html",term=term,results=Results)
 
 

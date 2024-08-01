@@ -14,10 +14,11 @@ def parse_job_boxes(result):
     for index, box in enumerate(boxes):
         job_info = {}
         job_title = box.a.text.strip()
-        company_title = box.find(class_="joblist-comp-name").text.strip()
+        company_title = box.find(class_="joblist-comp-name").contents[0].replace("\n","").strip()
         job_skills = box.find(class_="srp-skills").text.replace(' ', '').strip()
         job_link = box.a["href"]
-        job_location = box.find("span").text if box.find("span").text else "Not Stated"
+        unorderlist = box.find("ul", class_ ="top-jd-dtl clearfix")
+        job_location = unorderlist.find("span").text if unorderlist.find("span").text else "Not Stated"
         job_info["Title"] = job_title
         job_info["Company"] = company_title
         job_info["Keyskills"] = job_skills
@@ -48,3 +49,5 @@ def search_times_jobs(keyword):
         jobs.extend(parse_job_boxes(result))
         
     return jobs
+
+search_times_jobs("swim")
