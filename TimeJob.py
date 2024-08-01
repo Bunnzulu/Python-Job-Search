@@ -41,11 +41,10 @@ def search_times_jobs(keyword):
             for page in range(1, pages + 1)
             for start_page in range(1, ceil(pages / 10) + 1, 10)]
 
-    with ThreadPoolExecutor(max_workers=99999999) as executor:
+    with ThreadPoolExecutor(max_workers=9999999) as executor:
         results = list(executor.map(fetch, urls))
 
     for result in results:
         jobs.extend(parse_job_boxes(result))
-        print(len(jobs))
         
     return jobs
